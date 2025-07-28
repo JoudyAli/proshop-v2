@@ -13,7 +13,8 @@
   "author": "Joudy Ali",
   "license": "MIT",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongoose": "^8.16.5"
   },
   "devDependencies": {
     "concurrently": "^9.2.0",
