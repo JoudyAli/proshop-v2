@@ -1,6 +1,6 @@
 const products = [
   {
- 
+   
     name: 'Airpods Wireless Bluetooth Headphones',
     image: '/images/airpods.jpg',
     description:
@@ -25,7 +25,7 @@ const products = [
     numReviews: 8,
   },
   {
-    
+   
     name: 'Cannon EOS 80D DSLR Camera',
     image: '/images/camera.jpg',
     description:
