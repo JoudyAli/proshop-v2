@@ -5,6 +5,7 @@ import express from 'express';
 
 router.get("/", asyncHandler(async(req, res) => {
   const products = await Product.find({});
+
   // It uses asyncHandler to handle asynchronous operations and errors gracefully.
   res.json(products);   
 }));
@@ -16,7 +17,8 @@ router.get("/:id",asyncHandler(async(req, res) => {
        return res.json(product);
     }
     
-      res.status(404).json({Message:'Product not found'});
+    res.status(404);
+    throw new Error('Resource not found');
     
      })
 );
