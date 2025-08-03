@@ -1,0 +1,14 @@
+// Entry point to Redux store configuration
+import { configureStore } from '@reduxjs/toolkit';
+import { apiSlice } from './slices/apiSlice'; // Import the API slice
+
+const store = configureStore({
+  reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer, // Add the API slice reducer  
+  },
+middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware), // Add the API slice middleware
+  devTools:true, // Enable Redux DevTools
+
+});
+
+export default store;
