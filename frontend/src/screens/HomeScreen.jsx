@@ -1,4 +1,3 @@
-
 import { Row,Col } from "react-bootstrap"
 import Product from '../components/Product';
 import { useGetProductsQuery } from "../slices/productsApiSlice"; // Import the hook to fetch products
