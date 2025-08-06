@@ -36,8 +36,8 @@ const cartSlice= createSlice({
         state.totalPrice = (
           Number(
             state.itemsPrice)+
-            Number(state.shippingPric)+
-            Number(state.shippingPrice)
+            Number(state.shippingPrice)+
+            Number(state.taxPrice)
         ).toFixed(2);
 
         localStorage.setItem('cart',JSON.stringify(state));
