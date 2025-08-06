@@ -4,6 +4,11 @@ const initialState = localStorage.getItem('cart')
  ? JSON.parse(localStorage.getItem('cart')) 
  : { cartItems: [] }; // Initialize cart state from localStorage or default
 
+const addDecimals=(num)=>{
+  return (Math.round(num * 100)/100).toFixed(2);
+}
+
+
 const cartSlice= createSlice({
   name: 'cart',
     initialState,
@@ -18,9 +23,26 @@ const cartSlice= createSlice({
         }else{
           state.cartItems = [...state.cartItems,item];
         }
+        //calculate itmes price
+        state.itemsPrice = addDecimals(state.cartItems.reduce((acc,item)=> acc+item.price * item.qty,0));
 
-      }
+        //calculate shipping price (If odrder is $over 100 then free,else $10 shipping)
+        state.shippingPrice= addDecimals(state.itemsPrice >100 ? 0 :10);
+
+        //calculate tax price
+        state.taxPrice=addDecimals(Number((0.15 * state.itemsPrice).toFixed(2)));
+
+        //calculate total price
+        state.totalPrice = (
+          Number(
+            state.itemsPrice)+
+            Number(state.shippingPric)+
+            Number(state.shippingPrice)
+        ).toFixed(2);
+
+        localStorage.setItem('cart',JSON.stringify(state));
+      },
     },
 });
-
-export default cartSlice.reducer; // Export the reducer for use in the store
+export const {addToCart} = cartSlice.actions;
+export default cartSlice.reducer; // Export the reducer for use in the storeSS
