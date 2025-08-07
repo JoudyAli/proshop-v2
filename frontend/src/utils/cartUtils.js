@@ -3,7 +3,7 @@
 } ;
 
 export const updateCart = (state)=>{
-    //calculate itmes price
+         //calculate itmes price
         state.itemsPrice = addDecimals(state.cartItems.reduce((acc,item)=> acc+item.price * item.qty,0));
 
         //calculate shipping price (If odrder is $over 100 then free,else $10 shipping)
