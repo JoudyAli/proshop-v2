@@ -27,7 +27,7 @@ const Header = () => {
                            <FaShoppingCart /> Cart
                            {
                              cartItems.length > 0 && (
-                              <Badge pill bg="success" style={{marginLeft:'5PX'}}>
+                              <Badge pill bg="primary" style={{marginLeft:'5PX'}}>
                                {cartItems.reduce((a,c)=>a+c.qty,0)}
                               </Badge>
                              )
