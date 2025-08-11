@@ -52,7 +52,11 @@ import asyncHandler from '../middleware/asyncHandler.js';
   // @access  Private
 
  const logoutUser=asyncHandler(async(req,res)=>{
-    res.send(' logout User ')
+   res.cookie('jwt','',{
+      httpOnly : true,
+      expires: new Date(0)
+   });
+   res.status(200).json({meesage:'Logged out successfully'});
  });
 
  // @desc    Get user profile 
