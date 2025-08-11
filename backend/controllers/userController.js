@@ -18,7 +18,7 @@ import asyncHandler from '../middleware/asyncHandler.js';
   })
 
   //Set JWT as HTTP-Only Cookie
-  res.cookie('JWT',token,{
+  res.cookie('jwt',token,{
    httpOnly : true,
    secure: process.env.NODE_ENV !== 'development',
    sameSite : 'strict',
