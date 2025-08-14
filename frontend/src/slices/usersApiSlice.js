@@ -4,7 +4,8 @@ import { apiSlice } from "./apiSlice";
 export const usersApiSlice = apiSlice.injectEndpoints({
      endpoints: (builder) => ({
         login: builder.mutation({
-            query: (data) => ({ url: USERS_URL/auth,
+            query: (data) => ({ 
+                url: `${USERS_URL}/auth`,
                 method : 'POST',
                 body : data,
              }),
@@ -14,3 +15,5 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 
 export const { useLoginMutation} = usersApiSlice;
  // Export the hook for use in components
+
+ 
