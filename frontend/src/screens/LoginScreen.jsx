@@ -16,7 +16,7 @@ const LoginScreen = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [login,{isLoding}]=useLoginMutation();
+    const [login,{isLoading}]=useLoginMutation();
 
     const {userInfo} = useSelector((state)=>state.auth);
 
@@ -64,10 +64,10 @@ const LoginScreen = () => {
              ></Form.Control>
           </Form.Group>
 
-          <Button type='submit' variant='primary' className='mt-2'   disabled = {isLoding}>
+          <Button type='submit' variant='primary' className='mt-2'   disabled = {isLoading}>
             Sign In
           </Button>
-          {isLoding && <Loader/>}
+          {isLoading && <Loader/>}
         </Form>
         <Row className='py-3'>
          <Col>
