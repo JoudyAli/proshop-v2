@@ -14,15 +14,16 @@ const addOrderItems = asyncHandler(async (req, res) => {
         taxPrice,
         totalPrice
     } = req.body;
-
     if (orderItems && orderItems.length === 0) {
         res.status(400);
         throw new Error('No order items');
     } else {
         const order = new Order({
+            name: req.user.name,
             orderItems: orderItems.map((x) =>({
              ...x,
              product: x._id, // Assuming each item has an _id field
+             quantity: x.qty, // Assuming each item has a qty field
              _id: undefined // Remove the _id field to avoid duplication
             })),
             user: req.user._id,

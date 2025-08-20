@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema({
+        
     name: { 
         type:   String,
         required: true,
@@ -35,7 +36,7 @@ const orderSchema = mongoose.Schema({
         update_time: { type: String },
         email_address: { type: String },
     },
-    itemPrice: {
+    itemsPrice: {
         type: Number,
         required: true,
         default: 0.0,
