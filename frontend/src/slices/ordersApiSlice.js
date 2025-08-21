@@ -8,12 +8,20 @@
                 url:ORDERS_URL,
                 method: 'POST',
                 body: {...order},
-            })
-        })
+            }),
+        }),
+        getOrderDetails: builder.query({
+          query: (orderId) => ({
+            url: `${ORDERS_URL}/${orderId}`,
+            method: 'GET',
+          }),
+          keepUnusedDataFor: 5 // Cache the order details for 5 seconds
+        }),
       })  
    });
 
-export const { useCreateOrderMutation } = ordersApiSlice; // Export the hook for creating orders
+export const { useCreateOrderMutation , useGetOrderDetailsQuery} =
+ ordersApiSlice; // Export the hook for creating orders
 
 
 //{error&& <Message variant="danger">{error}</Message> }
