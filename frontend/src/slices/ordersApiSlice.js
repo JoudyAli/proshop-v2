@@ -28,6 +28,8 @@
           query: () => ({
             url: PAYPAL_URL,
           }),
+                    keepUnusedDataFor: 5 // Cache the order details for 5 seconds
+
         }),
       })  
    });

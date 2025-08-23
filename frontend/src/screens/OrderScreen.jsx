@@ -33,12 +33,39 @@ const OrderScreen = () => {
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-    const { data: paypal, isLoading :loadingPayPal, error: errorPayPal} 
-    = useGetPayPalClientIdQuery();
+    const { 
+        data: paypal,
+        isLoading :loadingPayPal,
+        error: errorPayPal
+    }= useGetPayPalClientIdQuery();
 
     const { userInfo } = useSelector((state) => state.auth);
- 
-     
+
+    useEffect(() => {
+        if (!errorPayPal && !loadingPayPal && paypal.clientId) {
+            const loadPayPalScript = async () => {
+            paypalDispatch({
+             type: 'resetOptions',
+             value: {
+                  'client-id': paypal.clientId,
+                     currency: 'USD',
+                },
+               });
+               paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
+            }  
+            if (order && !order.isPaid) {
+                if (!window.paypal) {
+                loadPayPalScript();
+                }
+            }
+       }  
+    }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal]);  
+
+
+    function onApprove() { }
+     function onApproveTest() { }
+      function onError() { }
+       function createOrder() { }
 
 
   return isLoading ? <Loader /> : error ? <Message variant='danger' /> 
@@ -117,7 +144,7 @@ const OrderScreen = () => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                     <Row>
-                        <Col>Items</Col>
+                        <Col>Items Price</Col>
                         <Col>${order.itemsPrice.toFixed(2)}</Col>
                     </Row>
                 </ListGroup.Item>
@@ -139,9 +166,25 @@ const OrderScreen = () => {
                         <Col>${order.totalPrice.toFixed(2)}</Col>
                     </Row>
                 </ListGroup.Item>
-                {/*  PAY ORDER PLACEHOLDER*/}
-                {/* MARK AS DELIVERD PLACEHOLDER */}
-                  
+                {!order.isPaid && (
+                <ListGroup.Item>    
+                    {loadingPay && <Loader />}
+                    {isPending ? (<Loader />) : (
+                        <div>
+                            <Button onClick={onApproveTest} style={{
+                                marginBottom: '10px'}} >Test Pay Order
+                             </Button>
+                             <PayPalButtons
+                              createOrder={createOrder} 
+                              onApprove={onApprove}
+                              onError={onError}>
+                              </PayPalButtons>
+                        </div>
+                   )}
+                </ListGroup.Item> 
+                
+                 )}  
+                 {/* MARK AS DELIVERD PLACEHOLDER */}
             </ListGroup>
            
         </Card>     

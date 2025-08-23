@@ -27,8 +27,8 @@ app.get("/", (req, res) => {
 app.use('/api/products',productRoutes); // Use product routes
 app.use('/api/users',userRoutes); 
 app.use('/api/orders', orderRoutes); // Use order routes
-app .use('/api/config/paypal', (req, res) => {
-    res.send({clientId: process.env.PAYPAL_CLIENT_ID
+app .get('/api/config/paypal', (req, res) => {
+   res.send({clientId: process.env.PAYPAL_CLIENT_ID
     }); // Send PayPal client ID
 });
 
