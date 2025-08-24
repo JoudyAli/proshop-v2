@@ -62,10 +62,36 @@ const OrderScreen = () => {
     }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal]);  
 
 
-    function onApprove() { }
-     function onApproveTest() { }
-      function onError() { }
-       function createOrder() { }
+    function onApprove(data, actions) {
+        return actions.order.capture().then(async function(details) {
+            try {
+                await payOrder({ orderId, details });
+                refetch();
+                toast.success('Order is paid');
+            } catch (err) {
+                toast.error(err?.data?.message || err.message);
+            }
+        });
+     }
+      async function onApproveTest() { 
+        await payOrder({ orderId, details:{payer:{}}});
+                refetch();
+                toast.success('Order is paid');
+     }
+      function onError(err) {
+        toast.error(err.message);
+       }
+       function createOrder(data, actions ) {
+        return actions.order.create({   
+            purchase_units: [
+                {
+                    amount: { value: order.totalPrice },
+                },
+            ],
+        }).then((orderID) => {
+            return orderID;
+        });
+         }
 
 
   return isLoading ? <Loader /> : error ? <Message variant='danger' /> 
@@ -171,9 +197,10 @@ const OrderScreen = () => {
                     {loadingPay && <Loader />}
                     {isPending ? (<Loader />) : (
                         <div>
-                            <Button onClick={onApproveTest} style={{
+                           {/* <Button onClick={onApproveTest} style={{
                                 marginBottom: '10px'}} >Test Pay Order
-                             </Button>
+                             </Button> */}
+                             
                              <PayPalButtons
                               createOrder={createOrder} 
                               onApprove={onApprove}
