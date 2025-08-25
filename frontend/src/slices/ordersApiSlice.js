@@ -46,6 +46,12 @@
             }),
           keepUnusedDataFor: 5 // Cache the order details for 5 seconds
            }),
+           deliverOrder: builder.mutation({
+            query: (orderId) => ({
+              url: `${ORDERS_URL}/${orderId}/deliver`,
+              method: 'PUT',
+            }), 
+           }),
       }),
    });
 
@@ -56,6 +62,7 @@ export const {
    useGetPayPalClientIdQuery,
    useGetMyOrdersQuery,
     useGetOrdersQuery,
+    useDeliverOrderMutation
 } = ordersApiSlice; // Export the hook for creating orders
 
 
