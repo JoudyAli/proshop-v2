@@ -23,7 +23,7 @@ const { userInfo } = useSelector((state) => state.auth)
 
 const [updateProfile, { isLoading: loadingUpdateProfile}] = useProfileMutation()
 
-const { data: orders, isLoading: loadingOrders, error: error } = useGetMyOrdersQuery()
+const { data: orders, isLoading: loadingOrders, error } = useGetMyOrdersQuery()
  
 useEffect (() => {
  if (userInfo) {
@@ -100,7 +100,7 @@ const submitHandler = async (e) => {
         </Col>
         <Col md={9}>
         <h2>My Orders</h2>
-        {loadingOrders ? <Loader/> : error ? <Message variant='danger'>{error?.data?.message || error.error}</Message> : (
+        {loadingOrders ? <Loader/> : error ? <Message variant='danger'>{error?.data?.message || error}</Message> : (
             <Table striped  hover responsive className='table-sm'>
             <thead>
                 <tr>
@@ -122,7 +122,7 @@ const submitHandler = async (e) => {
                         <td>{order.isDelivered ? (order.deliveredAt.substring(0,10)) : (<FaTimes  Time style={{color: 'red'}}/>)}</td>
                         <td>
                             <LinkContainer to={`/order/${order._id}`}>
-                                <Button className='btn-sm' variant='light'>Details</Button>
+                                <Button className='btn-sm' variant='light'  >Go To Order</Button>
                             </LinkContainer>
                         </td>
                     </tr>
