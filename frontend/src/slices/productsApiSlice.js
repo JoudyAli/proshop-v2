@@ -43,8 +43,17 @@ export const productsApiSlice = apiSlice.injectEndpoints({
                         }),
                 
                         }),
-         }),
-     });
+                        deleteProducts: builder.mutation({
+                        query: (productId) => ({
+                        url: `${PRODUCTS_URL}/${productId}`,
+                        method: 'DELETE',
+                         
+                                     }),
+                        }),
+                    }),
+              });
+
+
 
 export const { 
     useGetProductsQuery,
@@ -52,5 +61,6 @@ export const {
     useCreateProductMutation,
     useUpdateProductMutation,
     useUploadProductImageMutation,
+    useDeleteProductsMutation,
     } = productsApiSlice;
  // Export the hook for use in components

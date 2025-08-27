@@ -71,5 +71,28 @@
  });
 
 
-export { getProducts, getProductById, creatProducts, updateProducts }; 
+
+  // @desc    Delete a product
+  // @route   Delete /api/products/:id 
+  // @access  Private/Admin
+
+ const deleteProducts=asyncHandler(async(req,res)=>{
+    
+    const product = await Product.findById(req.params.id);
+    if(product){
+       await Product.deleteOne({_id:req.params.id});
+        res.json({message:'Product deleted'});
+    } else {
+        res.status(404);
+        throw new Error('Resource not found');
+    }
+ });
+
+
+export { 
+    getProducts,
+    getProductById,
+    creatProducts,
+    updateProducts,
+    deleteProducts }; 
 // Exporting the functions for use in routes
