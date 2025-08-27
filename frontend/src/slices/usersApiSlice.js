@@ -45,9 +45,23 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             }),
             
          }),
-
-        }),
-     });
+ 
+          getUserDetails : builder.query({
+            query : (userId) =>({
+             url : `${USERS_URL}/${userId}`,
+            }),
+            keepUnusedDataFor : 5
+           }),
+           updateUser : builder.mutation({
+            query : ({data}) =>({
+             url : `${USERS_URL}/${data.userId}`,
+             method : 'PUT',
+             body : data,
+            }),
+            invalidatesTags : ['User']
+         }),
+    }),
+ });
 
 export const { 
    useLoginMutation,
@@ -56,6 +70,8 @@ export const {
    useProfileMutation,
    useGetUsersQuery,
    useDeleteUserMutation,
+   useGetUserDetailsQuery,
+   useUpdateUserMutation,
  } = usersApiSlice;
  // Export the hook for use in components
 
