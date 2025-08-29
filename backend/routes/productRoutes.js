@@ -5,7 +5,8 @@ import express from 'express';
      getProductById,
      creatProducts,
     updateProducts,
-    deleteProducts
+    deleteProducts,
+    createProductReview,
     } from '../controllers/productController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 
@@ -14,7 +15,7 @@ router.route('/:id')
 .get(getProductById)
 .put(protect, admin, updateProducts)
 .delete(protect, admin, deleteProducts); // Route to get a product by ID  
-
+router.route('/:id/reviews').post(protect,createProductReview);
 
 
 
