@@ -7,7 +7,11 @@ import { toast } from 'react-toastify';
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import { useGetProductDetailsQuery, useCreateReviewMutation } from '../slices/productsApiSlice';
+import Meta from "../components/Meta";
+import { 
+    useGetProductDetailsQuery,
+     useCreateReviewMutation 
+    } from '../slices/productsApiSlice';
  import {addToCart} from '../slices/cartSlice';
 
 const ProductScreen = () => {
@@ -67,11 +71,12 @@ const submitHandler= async (e)=>{
               Go Back
              </Link>
 
-              
-
              {isLoading ?(
                 <Loader />
-             ): error ? (<Message variant='danger'>{error?.data?.message || error.error} </Message>):(<> <Row>
+             ): error ? (<Message variant='danger'>{error?.data?.message || error.error} </Message>):(
+             <> 
+             <Meta title={product.name} />
+             <Row>
              <Col md={5}>
                 <Image src={product.image} alt={product.name} fluid />  
              </Col>
