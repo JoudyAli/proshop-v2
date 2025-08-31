@@ -6,7 +6,7 @@
   // @access  Public
 
  const getProducts=asyncHandler(async(req,res)=>{
-    const pageSize= 6;
+    const pageSize= 4;
     const page = Number(req.query.pageNumber) || 1 ;
 
     const keyword = req.query.keyword ? {name : {$regex: req.query.keyword ,$options:'i'}}
@@ -143,6 +143,16 @@
     }
  });
 
+  // @desc    Get top tated products
+  // @route   GET /api/products/top
+  // @access  Public
+
+ const getTopProducts = asyncHandler(async(req, res) => {
+   const products = await Product.find({}).sort({rating:-1}).limit(3);
+    res.status(200).json(products)
+ });
+ 
+
  
 
 
@@ -153,5 +163,6 @@ export {
     updateProducts,
     deleteProducts ,
     createProductReview,
+    getTopProducts
 }; 
 // Exporting the functions for use in routes

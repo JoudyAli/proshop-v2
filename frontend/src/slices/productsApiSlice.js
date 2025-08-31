@@ -62,6 +62,12 @@ export const productsApiSlice = apiSlice.injectEndpoints({
                             body: data,
                         }),
                         invalidatesTags :['Product']
+                     }),
+                     getTopProducts:builder.query({
+                        query: ()=>({
+                         url :`${PRODUCTS_URL}/top`,
+                        }),
+                        keepUnusedDataFor:5,
                      })
   
                     }),
@@ -75,5 +81,6 @@ export const {
     useUploadProductImageMutation,
     useDeleteProductsMutation,
     useCreateReviewMutation,
+    useGetTopProductsQuery,
     } = productsApiSlice;
  // Export the hook for use in components

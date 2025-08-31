@@ -4,6 +4,7 @@ import Product from '../components/Product';
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
+import  ProductCarousel  from "../components/ProductCarousel";
 import { useGetProductsQuery } from "../slices/productsApiSlice"; // Import the hook to fetch products
 
 const HomeScreen = () => {
@@ -15,7 +16,7 @@ const HomeScreen = () => {
     keyword, pageNumber}); // Use the hook to get products
   return (
     <>
-    {keyword && <Link to='/' className="btn btn-light mb-4">Go Back</Link>}
+    {!keyword ? (<ProductCarousel/>) :( <Link to='/' className="btn btn-light mb-4">Go Back</Link>)}
     {isLoading ?(
      <Loader />
     ): error ? ( <Message variant='danger'>{error?.data?.message || error.error} </Message>):(<>

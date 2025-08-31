@@ -32,7 +32,7 @@ const OrderScreen = () => {
         
     const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
 
-    const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
+        const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
