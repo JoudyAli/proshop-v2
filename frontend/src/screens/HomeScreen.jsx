@@ -8,8 +8,11 @@ import { useGetProductsQuery } from "../slices/productsApiSlice"; // Import the 
 
 const HomeScreen = () => {
 
-  const {pageNumber}=useParams();
-   const { data , isLoading, error } = useGetProductsQuery({pageNumber}); // Use the hook to get products
+  const {pageNumber, keyword}=useParams();
+
+   const { data , isLoading, error } = useGetProductsQuery({
+
+    keyword, pageNumber}); // Use the hook to get products
   return (
     <>
     {isLoading ?(
@@ -25,7 +28,10 @@ const HomeScreen = () => {
         }
       </Row>
       <Paginate
-      pages={data.pages} page={data.page}/>
+      pages={data.pages}
+      page={data.page}
+      keyword={keyword ? keyword : ''}
+      />
     </>)}
 
       
