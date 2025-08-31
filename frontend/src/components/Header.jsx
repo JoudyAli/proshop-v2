@@ -4,7 +4,9 @@ import { FaShoppingCart,FaUser  } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 import { useSelector,useDispatch } from "react-redux";
 import {useLogoutMutation } from "../slices/usersApiSlice";
+import SearchBox from './SearchBox';
 import {logout} from '../slices/authSlice';
+
 import logo from '../assets/logo.png';
 
 const Header = () => {
@@ -31,7 +33,6 @@ const [logoutApiCall]=useLogoutMutation();
   return (
     <header>
         <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect> 
-        
             <Container>
               <LinkContainer to="/">
                 <Navbar.Brand >
@@ -42,6 +43,7 @@ const [logoutApiCall]=useLogoutMutation();
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
+                      <SearchBox/>
                         <LinkContainer to="/cart">
                          <Nav.Link >
                            <FaShoppingCart /> Cart
