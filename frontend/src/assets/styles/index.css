@@ -2,12 +2,23 @@ main {
   min-height: 80vh;
 }
 
+.navbar {
+  background-color: #2f4f4f!important;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item {
+  background-color: #2f4f4f; /* اللون اللي بدك إياه */
+}
+
+
 .rating span {
   margin: 0.1rem;
 }
 
 .rating svg {
-  color: #f6ea09;
+  color: #c9a66b;
 }
 
 .rating-text {
@@ -50,4 +61,63 @@ table th {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+}
+
+
+
+footer {
+  background-color: #ffff; /* اللون اللي بدك إياه */
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer,
+footer p,
+footer a {
+  color: #2f4f4f; /* لون النصوص */
+}
+
+.navbar-brand:hover {
+  color: #c9a66b !important;  /* اللون عند المرور */
+}
+
+label {
+ color: #2f4f4f;
+}
+
+strong,span,h3,h1,h2{
+  color: #2f4f4f;
+}
+
+.carousel h2 {
+  color:#ffffff; /* أي لون تريديه */
+}
+.dropdown-item{
+  color: #2f4f4f;
+}
+
+.btn {
+  background-color: #2f4f4f;
+  color: #fff;             
+}
+
+.btn:disabled{
+  background-color: #2f4f4f;
+  color: #fff;             
+}
+
+.list-group-item {
+  background-color: #ffff;
+  color: #2f4f4f;             
+}
+
+
+.table th,td{
+  background-color: #ffff; /* خلفية الرأس */
+  color: #2f4f4f;               /* لون النص */
+}
+
+.btn-danger {
+  background-color: red;
+  border: #ffff;
 }
