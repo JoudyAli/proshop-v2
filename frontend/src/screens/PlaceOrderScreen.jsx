@@ -133,9 +133,7 @@ const placeOrderHandler = async () => {
                 </ListGroup.Item>
                      <ListGroup.Item> 
                    {error && (
-  <Message variant="danger">
-    {error?.data?.message || error?.error || "Something went wrong"}
-  </Message>
+  <Message variant="danger">{error.data.message}</Message>
 )}
 
                      </ListGroup.Item>

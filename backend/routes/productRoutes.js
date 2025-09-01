@@ -10,14 +10,17 @@ import express from 'express';
     getTopProducts
     } from '../controllers/productController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
+import checkObjectId from '../middleware/checkObjectId.js';
 
 router.route('/').get(getProducts).post(protect, admin, creatProducts); // Route to get all products
 router.get('/top',getTopProducts);
+
+
 router.route('/:id')
-.get(getProductById)
-.put(protect, admin, updateProducts)
-.delete(protect, admin, deleteProducts); // Route to get a product by ID  
-router.route('/:id/reviews').post(protect,createProductReview);
+.get(checkObjectId, getProductById)
+.put(protect, admin,checkObjectId, updateProducts)
+.delete(protect, admin,checkObjectId, deleteProducts); // Route to get a product by ID  
+router.route('/:id/reviews').post(protect, checkObjectId,createProductReview);
 
 
 

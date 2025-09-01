@@ -6,6 +6,7 @@ import { useSelector,useDispatch } from "react-redux";
 import {useLogoutMutation } from "../slices/usersApiSlice";
 import SearchBox from './SearchBox';
 import {logout} from '../slices/authSlice';
+import { resetCart } from '../slices/cartSlice';
 
 import logo from '../assets/logo.png';
 
@@ -22,6 +23,7 @@ const [logoutApiCall]=useLogoutMutation();
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
+      dispatch(resetCart());
       navigate('/login');
     } catch (err) {
       console.log(err)
