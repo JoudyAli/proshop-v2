@@ -22,9 +22,7 @@ app.use(express.urlencoded({extended : true}));
 //Cookie parser middelware
 app.use(cookieparser());
 
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
+
 
 app.use('/api/products',productRoutes); // Use product routes
 app.use('/api/users',userRoutes); 
@@ -37,6 +35,23 @@ app .get('/api/config/paypal', (req, res) => {
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads'))); // Serve static files from uploads folder
+
+if (process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+
+  //any route that is not api will be redirected to index.html
+  app.get('*', (req, res)=>
+  res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+
+}else{
+  app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+}
+
+
 
 app.use(notfound); // Handle 404 errors
 app.use(errorHandler); // Handle other errors
