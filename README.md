@@ -4,7 +4,7 @@
 # 🛒 ProShop eCommerce Platform  
 
 A **full-featured eCommerce platform** built from scratch with the **MERN stack (MongoDB, Express, React, Node.js)** and **Redux Toolkit**.  
-This project was developed step by step as part of a hands-on course, resulting in a real-world application suitable for portfolios and production use.  
+This project was developed step by step as part of a hands-on course, resulting in a real-world application suitable for production use.  
 
 ---
 
