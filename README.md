@@ -40,7 +40,7 @@ This project was developed step by step as part of a hands-on course, resulting 
 
 ## 🔗 Live Demo  
 
-👉 [Click here to try the live demo](https://your-live-demo-link.com](https://proshop-v2-udsm.onrender.com))  
+👉 [Click here to try the live demo](https://proshop-v2-udsm.onrender.com) 
 
 ---
 
